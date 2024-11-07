@@ -15,9 +15,15 @@ function ScanSimulator({ itemId }) {
   };
 
   return (
-    <div>
-      <button onClick={simulateScan}>Simulate Scan</button>
-      {message && <p>{message}</p>}
+    <div className="bg-white p-4 rounded-lg shadow-md max-w-sm mx-auto text-center">
+      <h2 className="text-xl font-bold text-gray-700 mb-4">Scan Simulator</h2>
+      <button 
+        onClick={simulateScan}
+        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg mb-4"
+      >
+        Simulate Scan
+      </button>
+      {message && <p className="text-green-600 font-medium">{message}</p>}
     </div>
   );
 }

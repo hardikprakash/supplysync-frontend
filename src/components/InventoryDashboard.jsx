@@ -4,7 +4,6 @@ function InventoryDashboard() {
   const [inventory, setInventory] = useState([]);
 
   useEffect(() => {
-    // Fetch inventory data on component mount
     fetch('http://localhost:8000/api/inventory')
       .then(response => response.json())
       .then(data => setInventory(data))
@@ -28,14 +27,29 @@ function InventoryDashboard() {
   };
 
   return (
-    <div>
-      <h2>Inventory Dashboard</h2>
-      <ul>
+    <div className="inventory-dashboard bg-gray-100 p-6 rounded-lg shadow-md max-w-2xl mx-auto">
+      <h2 className="text-2xl font-bold text-gray-800 mb-6">Inventory Dashboard</h2>
+      <ul className="space-y-4">
         {inventory.map(item => (
-          <li key={item.id}>
-            {item.item_name} - Stock: {item.stock_level}
-            <button onClick={() => updateStock(item.id, 1)}>Add Stock</button>
-            <button onClick={() => updateStock(item.id, -1)}>Remove Stock</button>
+          <li key={item.id} className="p-4 bg-white rounded-lg shadow-sm flex items-center justify-between">
+            <div>
+              <span className="font-semibold text-gray-700">{item.item_name}</span> - 
+              <span className="ml-2 text-gray-600">Stock: {item.stock_level}</span>
+            </div>
+            <div className="space-x-2">
+              <button
+                onClick={() => updateStock(item.id, 1)}
+                className="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
+              >
+                Add Stock
+              </button>
+              <button
+                onClick={() => updateStock(item.id, -1)}
+                className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+              >
+                Remove Stock
+              </button>
+            </div>
           </li>
         ))}
       </ul>
